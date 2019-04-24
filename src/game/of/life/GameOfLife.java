@@ -49,8 +49,8 @@ public class GameOfLife extends Application {
         });
 
         Button btnStop = new Button();
-        btn.setText("Stop");
-        btn.setOnAction( event -> {
+        btnStop.setText("Stop");
+        btnStop.setOnAction( event -> {
             if (timeline == null){
                 return;
             }
@@ -65,6 +65,7 @@ public class GameOfLife extends Application {
         root.getChildren().add(label);
         root.getChildren().add(btn);
         root.getChildren().add(btnStop);
+        btnStop.setLayoutX(300);
 
 
 
