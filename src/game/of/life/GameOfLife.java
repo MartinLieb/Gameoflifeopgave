@@ -3,11 +3,13 @@ package game.of.life;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Tooltip;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
@@ -22,6 +24,7 @@ public class GameOfLife extends Application {
     private Label label;
     private Game world;
     private Pane root;
+    private Timeline timeline;
 
     @Override
     public void start(Stage primaryStage) {
@@ -45,12 +48,25 @@ public class GameOfLife extends Application {
 
         });
 
+        Button btnStop = new Button();
+        btn.setText("Stop");
+        btn.setOnAction( event -> {
+            if (timeline == null){
+                return;
+            }
+            timeline.stop();
+            timeline=null;
+        });
+
         // her er den label som tæller iterations
 
         label = new Label("0");
         label.setLayoutX(200);
         root.getChildren().add(label);
         root.getChildren().add(btn);
+        root.getChildren().add(btnStop);
+
+
 
         primaryStage.setTitle("Game of life");
         primaryStage.setScene(scene);
