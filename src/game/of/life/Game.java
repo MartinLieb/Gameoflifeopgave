@@ -11,12 +11,14 @@ import javafx.util.Duration;
 
 public class Game {
 
-    private static int WORLD_SIZE_X = 10, WORLD_SIZE_Y = 10;
+    private static int WORLD_SIZE_X = 20, WORLD_SIZE_Y = 20;
 
     private Cell[][] arrayH = new Cell[WORLD_SIZE_X][WORLD_SIZE_Y];
     private int lifeCycles;
     private Game world;
     private int nIteration;
+
+    // her defineres spillet og de random celler bliver sat ind
 
     private Game() {
         nIteration = 0;
@@ -38,10 +40,14 @@ public class Game {
 
     }
 
+    // her initialiseres spillet
+
     public static Game intialize() {
         Game world = new Game();
         return world;
     }
+
+    // her kaldes en metode som køres hver gang spillet updater
 
     public Game update() {
         nIteration++;
@@ -49,6 +55,8 @@ public class Game {
         int xMax = this.arrayH[0].length;
         for (int y = 0; y < yMax; y++) {
             for (int x = 0; x < xMax; x++) {
+
+                // her findes cellernes naboer og deres position i arrayet
 
                 List neighborList = new ArrayList();
 
@@ -98,6 +106,8 @@ public class Game {
                     }
                 }
 
+                // her sættes arraylisten med naboer til cellen
+
                 arrayH[x][y].setLivingNeighbours(neighborList.size());
                 arrayH[x][y].setNeighborList(neighborList);
 
@@ -114,26 +124,6 @@ public class Game {
         return world;
     }
 
-    public void cellDebug() {
-        System.out.println("**********");
-        int yMax = this.arrayH.length;
-        int xMax = this.arrayH[0].length;
-        int cell = 1;
-        for (int y = 0; y < yMax; y++) {
-            for (int x = 0; x < xMax; x++) {
-                if (arrayH[x][y].isAlive()) {
-                    System.out.print(String.valueOf(cell++));
-                } else {
-                    System.out.print(".");
-                }
-                if (cell == 10) {
-                    cell = 1;
-                }
-            }
-            System.out.println("");
-        }
-        System.out.println("**********");
-    }
 
     public static int getWORLD_SIZE_X() {
         return WORLD_SIZE_X;

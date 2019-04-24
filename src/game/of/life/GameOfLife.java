@@ -32,10 +32,10 @@ public class GameOfLife extends Application {
         matrix = world.getArrayH();
         updateScene(matrix, root);
 
-        Scene scene = new Scene(root, 250, 300);
+        Scene scene = new Scene(root, 430, 450);
 
         Button btn = new Button();
-        btn.setText("100 iterations");
+        btn.setText("Start game with 100 iterations");
         btn.setOnAction((ActionEvent event) -> {
             Timeline timeline = new Timeline(new KeyFrame(
                     Duration.millis(300),
@@ -44,6 +44,8 @@ public class GameOfLife extends Application {
             timeline.play();
 
         });
+
+        // her er den label som tæller iterations
 
         label = new Label("0");
         label.setLayoutX(200);
@@ -90,7 +92,7 @@ public class GameOfLife extends Application {
 
                 if (matrix[x][y].isAlive()) {
                     circ.setStrokeType(StrokeType.OUTSIDE);
-                    circ.setStroke(Color.web("red", 1));
+                    circ.setStroke(Color.web("blue", 1));
                     circ.setStrokeWidth(2);
                 } else {
                     circ.setStrokeType(StrokeType.OUTSIDE);
