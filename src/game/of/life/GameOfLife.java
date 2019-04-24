@@ -40,7 +40,7 @@ public class GameOfLife extends Application {
         Button btn = new Button();
         btn.setText("Start game with 100 iterations");
         btn.setOnAction((ActionEvent event) -> {
-            Timeline timeline = new Timeline(new KeyFrame(
+            timeline = new Timeline(new KeyFrame(
                     Duration.millis(300),
                     ae -> evolve(world, root)));
             timeline.setCycleCount(100);
@@ -54,7 +54,7 @@ public class GameOfLife extends Application {
             if (timeline == null){
                 return;
             }
-            timeline.stop();
+            timeline.pause();
             timeline=null;
         });
 
